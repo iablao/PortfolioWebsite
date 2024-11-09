@@ -33,8 +33,16 @@ Source = "https://github.com/Ester/app"
 
 [tool.hatch.version]
 path = "src/app/__about__.py"
-
+[tool.hatch.envs.default]
+python ="3.12"
+installer = "uv"
+path = ".venv"
+[tool.hatch.envs.default.scripts]
+dev = "uvicorn app.main:app --relaod"
+[tool.hatch.envs.default.env-vars]
+PYTHONASYNCIODEBUG = "1"
 [tool.hatch.envs.types]
+installer = "uv"
 extra-dependencies = [
   "mypy>=1.0.0",
 ]
