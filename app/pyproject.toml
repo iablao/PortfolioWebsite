@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "app"
 dynamic = ["version"]
-description = ''
+description = 'Porfilio website'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
