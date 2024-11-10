@@ -3,11 +3,11 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "app"
-dynamic = ["version"]
+name ="app"
 description = 'Porfilio website'
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
+version = "0.1.0" 
 license = "MIT"
 keywords = []
 authors = [
@@ -24,21 +24,24 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "sqlalchemy",
+  "pydantic"
+]
 
 [project.urls]
 Documentation = "https://github.com/Ester/app#readme"
 Issues = "https://github.com/Ester/app/issues"
 Source = "https://github.com/Ester/app"
 
-[tool.hatch.version]
-path = "src/app/__about__.py"
 [tool.hatch.envs.default]
 python ="3.12"
-installer = "uv"
+
 path = ".venv"
 [tool.hatch.envs.default.scripts]
-dev = "uvicorn app.main:app --relaod"
+dev = "uvicorn scr.app.main:app --reload"
 [tool.hatch.envs.default.env-vars]
 PYTHONASYNCIODEBUG = "1"
 [tool.hatch.envs.types]
