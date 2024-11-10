@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name ="app"
+name ="PORTFOLLOWEBSITE"
 description = 'Porfilio website'
 readme = "README.md"
 requires-python = ">=3.12"
@@ -38,12 +38,14 @@ Source = "https://github.com/Ester/app"
 
 [tool.hatch.envs.default]
 python ="3.12"
-
+installer = "uv"
 path = ".venv"
 [tool.hatch.envs.default.scripts]
-dev = "uvicorn scr.app.main:app --reload"
+dev = "uvicorn src.app.main:app --reload"
+
 [tool.hatch.envs.default.env-vars]
 PYTHONASYNCIODEBUG = "1"
+
 [tool.hatch.envs.types]
 installer = "uv"
 extra-dependencies = [
@@ -70,3 +72,5 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]
