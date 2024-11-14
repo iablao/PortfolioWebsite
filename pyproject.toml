@@ -3,11 +3,11 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name ="app"
+name ="PORTFOLLOWEBSITE"
 description = 'Porfilio website'
 readme = "README.md"
 requires-python = ">=3.12"
-version = "0.1.0"
+version = "0.1.0" 
 license = "MIT"
 keywords = []
 authors = [
@@ -25,10 +25,10 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "fastapi[all]",
+  "fastapi",
   "uvicorn",
   "sqlalchemy",
-  "pydantic",
+  "pydantic"
 ]
 
 [project.urls]

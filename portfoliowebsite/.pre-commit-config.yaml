@@ -1,8 +1,9 @@
 ci:
-  autofix_prs: true
-  autoupdate_schedule: weekly
-  autofix_commit_msg: "fix(pre_commit): 🎨 auto format pre-commit hooks"
-  autoupdate_commit_msg: "chore(pre_commit): ⬆ pre_commit autoupdate"
+    autofix_prs: true
+    autoupdate_schedule: weekly
+    autofix_commit_msg: "fix(pre_commit): 🎨 auto format pre-commit hooks"
+    autoupdate_commit_msg: "chore(pre_commit): ⬆ pre_commit autoupdate"
+
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v5.0.0
