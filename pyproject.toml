@@ -25,10 +25,10 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "fastapi",
+  "fastapi[all]",
   "uvicorn",
   "sqlalchemy",
-  "pydantic"
+  "pydantic",
 ]
 
 [project.urls]
