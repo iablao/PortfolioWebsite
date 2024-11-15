@@ -30,6 +30,7 @@ dependencies = [
   "sqlalchemy",
   "pydantic",
   "pyjwt>=2.9.0",
+  "passlib[bcrypt]>=1.7.4",
 ]
 
 [project.urls]
