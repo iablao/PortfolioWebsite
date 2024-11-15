@@ -29,6 +29,7 @@ dependencies = [
   "uvicorn",
   "sqlalchemy",
   "pydantic",
+  "pyjwt>=2.9.0",
 ]
 
 [project.urls]
