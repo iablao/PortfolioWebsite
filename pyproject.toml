@@ -33,6 +33,7 @@ dependencies = [
   "passlib[bcrypt]>=1.7.4",
   "sqlmodel>=0.0.22",
   "python-dotenv>=1.0.1",
+  "pydantic-settings>=2.6.1",
 ]
 
 [project.urls]
