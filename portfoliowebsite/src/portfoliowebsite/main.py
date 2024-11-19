@@ -3,7 +3,6 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-<<<<<<< HEAD
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
@@ -43,8 +42,3 @@ def delete_hero(hero_id: int, session: SessionDep):
     session.delete(hero)
     session.commit()
     return {"ok": True}
-=======
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
->>>>>>> e50d8d613907859e924dd2f921b6609a56eafc15
