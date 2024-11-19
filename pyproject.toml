@@ -46,7 +46,7 @@ python ="3.12"
 installer = "uv"
 path = ".venv"
 [tool.hatch.envs.default.scripts]
-dev = "uvicorn src.app.main:app --reload"
+dev = "uvicorn portfoliowebsite.src.portfoliowebsite.main:app --reload"
 
 [tool.hatch.envs.default.env-vars]
 PYTHONASYNCIODEBUG = "1"
