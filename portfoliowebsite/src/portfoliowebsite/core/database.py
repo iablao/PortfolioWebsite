@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from portfoliowebsite.core.config import settings
 
-SQLITE_FILE_NAME = "database.db"
-SQLALCHEMY_DATABASE_URL = f"sqlite:///{SQLITE_FILE_NAME}"
+
+SQLALCHEMY_DATABASE_URL = settings.SQLALCHEMY_DATABASE_URL
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
