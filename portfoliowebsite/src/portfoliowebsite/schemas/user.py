@@ -7,12 +7,12 @@ class UserBase(BaseModel):
     email: EmailStr
     role: Optional[str] = "user"  # optional role, defaults to "user"
 
-class UserCreate(UserBase):
+class UserCreate(BaseModel):
     password: str
     is_verified: Optional[bool] = None
     is_active: Optional[bool] = None
 
-class User(UserBase):
+class User(BaseModel):
     id: int
     is_active: bool
     is_verified: bool
