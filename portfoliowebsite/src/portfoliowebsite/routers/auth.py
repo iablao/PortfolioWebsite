@@ -2,12 +2,12 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from portfoliowebsite.dependencies import get_db
 from portfoliowebsite.models import User
-from portfoliowebsite.schemas import Token, UserCreate, UserLogin
+from portfoliowebsite.schemas import token, UserCreate, UserLogin
 from portfoliowebsite.core.security import hash_password, verify_password, create_access_token
 
 router = APIRouter()
 
-@router.post("/signup", response_model=Token)
+@router.post("/signup", response_model=token)
 def signup(user: UserCreate, db: Session = Depends(get_db)):
     # Check if the user already exists
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -29,9 +29,9 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     access_token = create_access_token(data={"sub": new_user.email})
 
     # Return a Token instance instead of a dictionary
-    return Token(access_token=access_token, token_type="bearer")
+    return token(access_token=access_token, token_type="bearer")
 
-@router.post("/login", response_model= Token)
+@router.post("/login", response_model= token)
 def login(user: UserLogin, db: Session = Depends(get_db)):
     # Check if the user exists in the database
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -46,5 +46,5 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     access_token = create_access_token(data={"sub": db_user.email})
 
     # Return a Token instance instead of a dictionary
-    return Token(access_token=access_token, token_type="bearer")
+    return token(access_token=access_token, token_type="bearer")
 
