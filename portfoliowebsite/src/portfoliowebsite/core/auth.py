@@ -7,7 +7,7 @@ from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 
 from portfoliowebsite.core.config import get_settings
-from portfoliowebsite.schemas.Token import Token
+from portfoliowebsite.schemas.token import token
 
 settings = get_settings()
 
@@ -34,7 +34,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-def decode_access_token(token: str) -> Token:
+def decode_access_token(token: str) -> token:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
@@ -42,7 +42,7 @@ def decode_access_token(token: str) -> Token:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Token invalid"
             )
-        return Token(username=username)
+        return token(username=username)
     except InvalidTokenError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Token invalid"
