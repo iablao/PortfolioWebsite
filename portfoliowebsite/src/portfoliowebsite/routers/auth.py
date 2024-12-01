@@ -31,7 +31,7 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     # Return a Token instance instead of a dictionary
     return Token(access_token=access_token, token_type="bearer")
 
-@router.post("/login", response_model=Token)
+@router.post("/login", response_model= Token)
 def login(user: UserLogin, db: Session = Depends(get_db)):
     # Check if the user exists in the database
     db_user = db.query(User).filter(User.email == user.email).first()
