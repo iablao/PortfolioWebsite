@@ -7,7 +7,7 @@ from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 
 from portfoliowebsite.core.config import get_settings
-from portfoliowebsite.schemas.token import TokenData
+from portfoliowebsite.schemas.Token import TokenData
 
 settings = get_settings()
 
