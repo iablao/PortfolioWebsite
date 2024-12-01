@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from portfoliowebsite.dependencies import get_db
-from portfoliowebsite.models import User  # Import the User model
-from portfoliowebsite.schemas import Token, UserCreate, UserLogin  # Import the schemas
-from portfoliowebsite.core.security import hash_password, verify_password, create_access_token  # Import security functions
+from portfoliowebsite.models import User
+from portfoliowebsite.schemas import Token, UserCreate, UserLogin
+from portfoliowebsite.core.security import hash_password, verify_password, create_access_token
 
 router = APIRouter()
 
@@ -27,7 +27,9 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
 
     # Generate a JWT token for the new user
     access_token = create_access_token(data={"sub": new_user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+
+    # Return a Token instance instead of a dictionary
+    return Token(access_token=access_token, token_type="bearer")
 
 @router.post("/login", response_model=Token)
 def login(user: UserLogin, db: Session = Depends(get_db)):
@@ -42,4 +44,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
     # Generate a JWT token for the authenticated user
     access_token = create_access_token(data={"sub": db_user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+
+    # Return a Token instance instead of a dictionary
+    return Token(access_token=access_token, token_type="bearer")
+
