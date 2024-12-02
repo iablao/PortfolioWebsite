@@ -7,7 +7,7 @@ from portfoliowebsite.core.security import hash_password, verify_password, creat
 
 router = APIRouter()
 
-@router.post("/signup", response_model=token)
+@router.post("/signup", response_model=token)  # Using lowercase 'token' here
 def signup(user: UserCreate, db: Session = Depends(get_db)):
     # Check if the user already exists
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -28,10 +28,10 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     # Generate a JWT token for the new user
     access_token = create_access_token(data={"sub": new_user.email})
 
-    # Return a Token instance instead of a dictionary
+    # Return the token using the lowercase class name
     return token(access_token=access_token, token_type="bearer")
 
-@router.post("/login", response_model= token)
+@router.post("/login", response_model=token)  # Using lowercase 'token' here
 def login(user: UserLogin, db: Session = Depends(get_db)):
     # Check if the user exists in the database
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -45,6 +45,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     # Generate a JWT token for the authenticated user
     access_token = create_access_token(data={"sub": db_user.email})
 
-    # Return a Token instance instead of a dictionary
+    # Return the token using the lowercase class name
     return token(access_token=access_token, token_type="bearer")
+
 

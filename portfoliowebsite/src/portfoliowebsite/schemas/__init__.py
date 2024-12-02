@@ -1,4 +1,4 @@
 from .user import UserBase, UserCreate, UserLogin, User, UserResponse
-from .Token import Token  # Import the Token class or schema here
+from .token import token  # Import the Token class or schema here
 
-__all__ = ["UserBase", "UserCreate", "UserLogin", "User", "UserResponse", "Token"]  # Add Token to __all__
+__all__ = ["UserBase", "UserCreate", "UserLogin", "User", "UserResponse", "token"]  # Add Token to __all__
