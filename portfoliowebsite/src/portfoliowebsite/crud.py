@@ -14,3 +14,19 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 def get_user_by_email(db: Session, email: str):
     return db.query(models.User).filter(models.User.email == email).first()
+
+def authenticate_user(username: str, password: str):
+    # Logic to authenticate user
+    pass
+
+def create_access_token(data: dict):
+    # Logic to create an access token
+    pass
+
+def get_project(project_id: int):
+    # Logic to fetch a project from the database
+    pass
+
+def create_project(project_data):
+    # Logic to add a new project to the database
+    pass

@@ -1,51 +1,17 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-from portfoliowebsite.dependencies import get_db
-from portfoliowebsite.models import User
-from portfoliowebsite.schemas import token, UserCreate, UserLogin
-from portfoliowebsite.core.security import hash_password, verify_password, create_access_token
+from fastapi import APIRouter, HTTPException, Depends
+from fastapi.security import OAuth2PasswordRequestForm
+from portfoliowebsite.schemas.token import token
+from portfoliowebsite.crud import authenticate_user, create_access_token
 
 router = APIRouter()
 
-@router.post("/signup", response_model=token)  # Using lowercase 'token' here
-def signup(user: UserCreate, db: Session = Depends(get_db)):
-    # Check if the user already exists
-    db_user = db.query(User).filter(User.email == user.email).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-
-    # Hash the user's password before storing it
-    hashed_password = hash_password(user.password)
-
-    # Create a new user instance
-    new_user = User(email=user.email, hashed_password=hashed_password)
-
-    # Add the new user to the database
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-
-    # Generate a JWT token for the new user
-    access_token = create_access_token(data={"sub": new_user.email})
-
-    # Return the token using the lowercase class name
-    return token(access_token=access_token, token_type="bearer")
-
-@router.post("/login", response_model=token)  # Using lowercase 'token' here
-def login(user: UserLogin, db: Session = Depends(get_db)):
-    # Check if the user exists in the database
-    db_user = db.query(User).filter(User.email == user.email).first()
-    if not db_user:
+@router.post("/login", response_model=token)
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    Handle user login.
+    """
+    user = authenticate_user(form_data.username, form_data.password)
+    if not user:
         raise HTTPException(status_code=400, detail="Invalid credentials")
-
-    # Verify the user's password
-    if not verify_password(user.password, db_user.hashed_password):
-        raise HTTPException(status_code=400, detail="Invalid credentials")
-
-    # Generate a JWT token for the authenticated user
-    access_token = create_access_token(data={"sub": db_user.email})
-
-    # Return the token using the lowercase class name
-    return token(access_token=access_token, token_type="bearer")
-
-
+    access_token = create_access_token({"sub": user.username})
+    return {"access_token": access_token, "token_type": "bearer"}

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from portfoliowebsite.core.database import Base, engine
-from portfoliowebsite.routers import auth, portfolio
+from portfoliowebsite.routers import auth_router, portfolio_router
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 
@@ -23,9 +23,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers with prefixes
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-app.include_router(portfolio.router, prefix="/portfolio", tags=["Portfolio"])
+
+
+# Register routers
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
+app.include_router(portfolio_router, prefix="/portfolio", tags=["portfolio"])
 
 # Root endpoint
 @app.get("/")
