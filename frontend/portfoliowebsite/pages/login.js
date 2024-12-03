@@ -2,16 +2,26 @@ import { useState } from "react";
 import axios from "../utils/axios";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // URL-encoded form data
+    const formData = new URLSearchParams();
+    formData.append("username", username);
+    formData.append("password", password);
+
     try {
-      const response = await axios.post("/login", { email, password });
-      setMessage(response.data.message);
-      // Store token if needed: localStorage.setItem("token", response.data.token);
+      const response = await axios.post("/login", formData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+      setMessage(`Login successful: ${response.data.access_token}`);
+      // Store token if needed: localStorage.setItem("token", response.data.access_token);
     } catch (error) {
       setMessage(error.response?.data?.detail || "An error occurred");
     }
@@ -22,11 +32,11 @@ const LoginPage = () => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label>Username:</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
