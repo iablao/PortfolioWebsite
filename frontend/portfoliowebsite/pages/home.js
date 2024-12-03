@@ -1,4 +1,6 @@
+import Image from "next/image";
 function HomePage() {
+    
     return (
       <div
         style={{
@@ -36,12 +38,22 @@ function HomePage() {
               alignItems: "center",
             }}
           >
+            
+            <Image
+        src="/testimg.jpg"
+        alt="A picture of me"
+        width={200}
+        height={200}
+        style={{ borderRadius: "50%", marginTop: "20px" }}
+        />
+
             <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
               Welcome to My Portfolio!
             </h1>
             <p style={{ fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center" }}>
               Hi there! Explore my projects, learn more about me, and feel free to get in touch.
             </p>
+
           </div>
   
           {/* Sidebar */}
