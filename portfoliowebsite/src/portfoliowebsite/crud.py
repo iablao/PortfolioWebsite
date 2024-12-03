@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
 from passlib.context import CryptContext
+import jwt
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -20,8 +21,11 @@ def authenticate_user(username: str, password: str):
     pass
 
 def create_access_token(data: dict):
-    # Logic to create an access token
-    pass
+    token_obj = models.Token(id = 2, access_token = "success", token_type = "wxyz")
+    #if True:
+    #    raise HTTPException(status_code=400, detail = "Hello")
+    return token_obj
+    #pass
 
 def get_project(project_id: int):
     # Logic to fetch a project from the database
