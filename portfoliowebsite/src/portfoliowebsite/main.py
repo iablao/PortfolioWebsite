@@ -3,6 +3,9 @@ from portfoliowebsite.core.database import Base, engine
 from portfoliowebsite.routers import auth_router, portfolio_router
 from fastapi.middleware.cors import CORSMiddleware
 import logging
+from typing import List
+
+from portfoliowebsite.models import User
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -23,8 +26,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 # Register routers
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(portfolio_router, prefix="/portfolio", tags=["portfolio"])
@@ -43,3 +44,18 @@ async def startup_event():
 async def shutdown_event():
     logger.info("Shutting down the application")
 
+
+#Testing db
+    
+db: list[User] = [
+    User(
+        id = 1, 
+        name = "Jamila", 
+        email = "jamila.ahmed@gmail.com",
+        hashed_password = "0123hello",
+    )
+]
+
+@app.get("/users")
+async def fetch_users():
+    return db;
