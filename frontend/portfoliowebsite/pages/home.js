@@ -14,15 +14,8 @@ function HomePage() {
       >
         {/* Header */}
         <header
-          style={{
-            backgroundColor: "#4caf50",
-            color: "white",
-            padding: "15px 20px",
-            textAlign: "center",
-            fontSize: "1.5rem",
-          }}
+    
         >
-          My Portfolio
         </header>
   
         {/* Main Content with Sidebar */}
@@ -64,6 +57,17 @@ function HomePage() {
             }}
           >
             <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Navigation</h2>
+            <a
+              href="http://localhost:3000/home"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                marginBottom: "10px",
+                fontSize: "1.1rem",
+              }}
+            >
+              Home
+            </a>
             <a
               href="http://localhost:3000/login"
               style={{
