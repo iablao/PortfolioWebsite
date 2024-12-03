@@ -37,8 +37,11 @@ function HomePage() {
             }}
           >
             <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-              Filler for projects page.
-              </h1>
+              Welcome to My Portfolio!
+            </h1>
+            <p style={{ fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center" }}>
+              Hi there! Explore my projects, learn more about me, and feel free to get in touch.
+            </p>
           </div>
   
           {/* Sidebar */}

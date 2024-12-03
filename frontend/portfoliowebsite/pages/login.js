@@ -37,7 +37,7 @@ function HomePage() {
             }}
           >
             <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-              Filler for projects page.
+              Filler for login page.
               </h1>
           </div>
   
