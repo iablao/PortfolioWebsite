@@ -1,11 +1,11 @@
-import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+//import React from "react";
+//import Header from "../components/Header";
+//import Footer from "../components/Footer";
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+
       <main className="flex-grow container mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">About Me</h1>
         <p className="text-gray-600 text-lg">
@@ -19,7 +19,7 @@ const About = () => {
           My goal is to create impactful solutions that make a difference.
         </p>
       </main>
-      <Footer />
+      
     </div>
   );
 };
