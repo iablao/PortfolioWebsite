@@ -5,7 +5,6 @@
 const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       <main className="flex-grow container mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">Contact Me</h1>
         <p className="text-gray-600 text-lg">
@@ -32,7 +31,6 @@ const Contact = () => {
           </p>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
