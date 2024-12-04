@@ -35,28 +35,16 @@ function HomePage() {
             alignItems: "center",
           }}
         >
-           <Image
-        src="/fred.jpg"
-        alt="A picture of me"
-        width={200}
-        height={200}
-        style={{ borderRadius: "50%", marginTop: "20px" }}
-        />
-
-          <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-            About Fred 
-          </h1>
-          <p style={{ fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center", maxWidth: "800px" }}>
-             Hi! I'm Fred, a passionate Computer Engineering major on a journey to create the future through technology. Here's a quick look at my life and experiences:
-          </p>
-          <ul style={{ fontSize: "1.1rem", lineHeight: "1.8", listStyleType: "none", paddingLeft: "0" }}>
-            <li>📚 Studying at San Diego State University in the field of Computer Engineering</li>
-            <li>💻 Passionate about coding and building innovative projects</li>
-            <li>🔧 Experienced in hardware and software integration</li>
-            <li>📱 Always exploring new technologies, from IoT to Artificial Intelligence</li>
-            <li>🌱 Constantly learning and evolving in the world of tech</li>
-            <li>🌍 Aiming to make a positive impact through engineering</li>
-          </ul>
+        <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
+              All about our website:
+            </h1>
+            <p style={{ fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center" }}>
+            This is the repository for a portfolio website. 
+            It is aimed to be an all-in-one webpage where you can showcase your resume, 
+            cover letter, personal projects, etc. As well as allowing you to link all your 
+            job searching applications (i.e. LinkedIn, Handshake, Indeed, etc). 
+            This webpage is intended to be more than a Linktree and less than a LinkedIn.
+            </p>
          
         </div>
 
@@ -74,7 +62,7 @@ function HomePage() {
         >
           <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Navigation</h2>
           <a
-            href="http://localhost:3000/home"
+            href="http://localhost:3000/welcome"
             style={{
               color: "white",
               textDecoration: "none",
@@ -82,7 +70,7 @@ function HomePage() {
               fontSize: "1.1rem",
             }}
           >
-            Home
+            Welcome
           </a>
           <a
             href="http://localhost:3000/login"
@@ -96,7 +84,7 @@ function HomePage() {
             Login
           </a>
           <a
-            href="http://localhost:3000/about"
+            href="http://localhost:3000/aboutwebsite"
             style={{
               color: "white",
               textDecoration: "none",
@@ -104,30 +92,8 @@ function HomePage() {
               fontSize: "1.1rem",
             }}
           >
-            About
-          </a>
-          <a
-            href="http://localhost:3000/contact"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "10px",
-              fontSize: "1.1rem",
-            }}
-          >
-            Contact
-          </a>
-          <a
-            href="http://localhost:3000/projects"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "10px",
-              fontSize: "1.1rem",
-            }}
-          >
-            Projects
-          </a>
+            About this website
+            </a>
         </nav>
       </div>
 

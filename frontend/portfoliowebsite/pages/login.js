@@ -118,7 +118,7 @@ function HomePage() {
         >
           <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Navigation</h2>
           <a
-            href="http://localhost:3000/home"
+            href="http://localhost:3000/welcome"
             style={{
               color: "white",
               textDecoration: "none",
@@ -126,7 +126,7 @@ function HomePage() {
               fontSize: "1.1rem",
             }}
           >
-            Home
+            Welcome
           </a>
           <a
             href="http://localhost:3000/login"
@@ -140,7 +140,7 @@ function HomePage() {
             Login
           </a>
           <a
-            href="http://localhost:3000/about"
+            href="http://localhost:3000/aboutwebsite"
             style={{
               color: "white",
               textDecoration: "none",
@@ -148,30 +148,10 @@ function HomePage() {
               fontSize: "1.1rem",
             }}
           >
-            About
+            About this website
           </a>
-          <a
-            href="http://localhost:3000/contact"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "10px",
-              fontSize: "1.1rem",
-            }}
-          >
-            Contact
-          </a>
-          <a
-            href="http://localhost:3000/projects"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "10px",
-              fontSize: "1.1rem",
-            }}
-          >
-            Projects
-          </a>
+         
+        
         </nav>
       </div>
 
