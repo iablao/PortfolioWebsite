@@ -42,8 +42,8 @@ function HomePage() {
           <Image
         src="/fred.jpg"
         alt="A picture of me"
-        width={200}
-        height={200}
+        width={275}
+        height={275}
         style={{ borderRadius: "50%", marginTop: "20px" }}
         />
 
@@ -253,7 +253,31 @@ function HomePage() {
                 >
                   Contact me
                 </a>
-
+                <a
+                  href="http://localhost:3000/addelement"
+                  style={{
+                    backgroundColor: "#388e3c",
+                    color: "white",
+                    textDecoration: "none",
+                    marginBottom: "15px",
+                    padding: "15px",
+                    borderRadius: "10px",
+                    fontSize: "1.1rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    transition: "background-color 0.3s ease, transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#2c6b2f";
+                    e.target.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#388e3c";
+                    e.target.style.transform = "scale(1)";
+                  }}
+                >
+                  +
+                </a>
                 <a
                   href="http://localhost:3000/welcome"
                   style={{

@@ -3,9 +3,38 @@ import Image from "next/image";
 
 function HomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(true); // State for sidebar visibility
+  const [formData, setFormData] = useState({
+    title: "",
+    header: "",
+    year: "",
+    description: "",
+    file: null,
+  });
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      file: e.target.files[0],
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
+    // Handle form submission logic here
+    // For example, send formData to a server or API
   };
 
   return (
@@ -22,12 +51,7 @@ function HomePage() {
       }}
     >
       {/* Main Content with Sidebar */}
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-        }}
-      >
+      <div style={{ display: "flex", flex: 1 }}>
         {/* Main Content */}
         <div
           style={{
@@ -39,10 +63,9 @@ function HomePage() {
             alignItems: "center",
           }}
         >
-
           <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-Contact me below!          </h1>
-          {/* Line Spacer */}
+            Submit Your Information
+          </h1>
           <div
             style={{
               width: "66%",
@@ -51,45 +74,127 @@ Contact me below!          </h1>
               margin: "20px 0",
             }}
           ></div>
-                  <li style={{ marginBottom: "10px" }}>
-          📞 Phone:{" "}
-          <a href="tel:+1234567890" style={{ color: "#4caf50", textDecoration: "none" }}>
-            +1 (234) 567-890
-          </a>
-        </li>
-        <li style={{ marginBottom: "10px" }}>
-          📧 Email:{" "}
-          <a
-            href="mailto:yourname@example.com"
-            style={{ color: "#4caf50", textDecoration: "none" }}
+
+          {/* Form */}
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%",
+              maxWidth: "500px",
+            }}
           >
-            yourname@example.com
-          </a>
-        </li>
-        <li style={{ marginBottom: "10px" }}>
-          💼 LinkedIn:{" "}
-          <a
-            href="https://www.linkedin.com/in/yourprofile"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#4caf50", textDecoration: "none" }}
-          >
-            linkedin.com/in/yourprofile
-          </a>
-        </li>
-        <li style={{ marginBottom: "10px" }}>
-          🖥️ GitHub:{" "}
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#4caf50", textDecoration: "none" }}
-          >
-            github.com/yourusername
-          </a>
-        </li>
-      
-          {/* Line Spacer */}
+            <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleInputChange}
+                style={{
+                  marginTop: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  boxSizing: "border-box",
+                }}
+                required
+              />
+            </label>
+
+            <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
+              Header:
+              <input
+                type="text"
+                name="header"
+                value={formData.header}
+                onChange={handleInputChange}
+                style={{
+                  marginTop: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  boxSizing: "border-box",
+                }}
+                required
+              />
+            </label>
+
+            <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
+              Year:
+              <input
+                type="date"
+                style={{
+                  marginTop: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  boxSizing: "border-box",
+                }}
+                required
+              />
+            </label>
+
+            <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
+              Description:
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                style={{
+                  marginTop: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  boxSizing: "border-box",
+                  resize: "none",
+                }}
+                rows="5"
+                required
+              />
+            </label>
+
+            <label style={{ marginBottom: "20px", fontWeight: "bold" }}>
+              File Upload:
+              <input
+                type="file"
+                name="file"
+                onChange={handleFileChange}
+                style={{
+                  marginTop: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  boxSizing: "border-box",
+                }}
+                required
+              />
+            </label>
+
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "#4caf50",
+                color: "white",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              Submit
+            </button>
+          </form>
+
           <div
             style={{
               width: "66%",
@@ -98,7 +203,6 @@ Contact me below!          </h1>
               margin: "20px 0",
             }}
           ></div>
-          
         </div>
 
         {/* Sidebar */}

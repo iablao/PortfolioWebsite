@@ -40,8 +40,7 @@ function HomePage() {
           }}
         >
           <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-          Welcome to My Portfolio!
-          </h1>
+Here is a little about me!          </h1>
           {/* Line Spacer */}
           <div
             style={{
@@ -254,7 +253,31 @@ function HomePage() {
                 >
                   Contact me
                 </a>
-
+                <a
+                  href="http://localhost:3000/addelement"
+                  style={{
+                    backgroundColor: "#388e3c",
+                    color: "white",
+                    textDecoration: "none",
+                    marginBottom: "15px",
+                    padding: "15px",
+                    borderRadius: "10px",
+                    fontSize: "1.1rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    transition: "background-color 0.3s ease, transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#2c6b2f";
+                    e.target.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#388e3c";
+                    e.target.style.transform = "scale(1)";
+                  }}
+                >
+                  +
+                </a>
                 <a
                   href="http://localhost:3000/welcome"
                   style={{
