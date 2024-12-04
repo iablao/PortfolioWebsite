@@ -48,7 +48,7 @@ function HomePage() {
         />
 
           <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
-          Welcome to My Portfolio!
+          Welcome to Fred's Portfolio!
           </h1>
           {/* Line Spacer */}
           <div
