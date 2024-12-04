@@ -38,15 +38,6 @@ function HomePage() {
               alignItems: "center",
             }}
           >
-            
-            <Image
-        src="/testimg.jpg"
-        alt="A picture of me"
-        width={200}
-        height={200}
-        style={{ borderRadius: "50%", marginTop: "20px" }}
-        />
-
             <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
               Welcome to My Portfolio!
             </h1>
@@ -54,6 +45,13 @@ function HomePage() {
               Hi there! Explore my projects, learn more about me, and feel free to get in touch.
             </p>
 
+            <Image
+        src="/testimg.jpg"
+        alt="A picture of me"
+        width={150}
+        height={150}
+        style={{ borderRadius: "50%", marginTop: "20px" }}
+        />
           </div>
   
           {/* Sidebar */}
