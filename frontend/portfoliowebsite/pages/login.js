@@ -1,31 +1,85 @@
 import { useState } from "react";
 import axios from "../utils/axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function HomePage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter(); // Initialize useRouter for navigation
 
-  const handleSubmit = async (e) => {
+ //TO FIX WHEN TOKENS AND DATABASE ARE SET UP
+ 
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // URL-encoded form data
     const formData = new URLSearchParams();
     formData.append("username", username);
     formData.append("password", password);
-
+  
     try {
       const response = await axios.post("/login", formData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-      setMessage(`Login successful: ${response.data.access_token}`);
-      // Store token if needed: localStorage.setItem("token", response.data.access_token);
+  
+      // Log the response to debug
+      console.log("Response:", response);
+  
+      // Check for successful login response
+      if (response.status === 200 && response.data.access_token) {
+        console.log("Login successful, token received:", response.data.access_token);
+  
+        // Save the token in localStorage
+        localStorage.setItem("token", response.data.access_token);
+  
+        // Redirect to /home
+        router.push("/home");
+      } else {
+        // Handle unexpected success responses without token
+        console.log("Unexpected response structure:", response.data);
+        setMessage("Login successful, but no access token provided.");
+      }
     } catch (error) {
-      setMessage(error.response?.data?.detail || "An error occurred");
-    }
+      // Handle errors
+      console.error("Login error:", error);
+  
+      if (error.response?.status === 401) {
+        setMessage("Invalid Credentials");
+      } else if (error.response?.status === 400) {
+        setMessage("Bad Request: Please check your inputs.");
+      } else {
+        setMessage("An unexpected error occurred. Please try again later.");
+      }
+    } */
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      // Hardcoded credentials for temporary solution
+      const correctUsername = "fred";
+      const correctPassword = "123";
+    
+      // Check if the provided username and password match the hardcoded ones
+      if (username === correctUsername && password === correctPassword) {
+        // Create a mock token for the user since we are not using a backend for now
+        const mockToken = "mock_access_token"; // This would be returned by your backend in a real scenario
+    
+        // Store token locally for the session
+        localStorage.setItem("token", mockToken);
+    
+        // Redirect to /home
+        router.push("/home");
+      } else {
+        // Show error message if username/password is incorrect
+        setMessage("Invalid Credentials");
+      }
+  
+    
+
   };
 
   return (
@@ -150,8 +204,6 @@ function HomePage() {
           >
             About this website
           </a>
-         
-        
         </nav>
       </div>
 
