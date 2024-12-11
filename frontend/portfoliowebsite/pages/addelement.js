@@ -19,6 +19,55 @@ function HomePage() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
+  // Validate title length
+  if (name === "title") {
+    if (value.length < 5) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        title: "Title must be at least 5 characters long.",
+      }));
+    } else {
+      setErrors((prevErrors) => {
+        const newErrors = { ...prevErrors };
+        delete newErrors.title;
+        return newErrors;
+      });
+    }
+  }
+
+    // Validate header length
+    if (name === "header") {
+      if (value.length < 5) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          header: "Header must be at least 5 characters long.",
+        }));
+      } else {
+        setErrors((prevErrors) => {
+          const newErrors = { ...prevErrors };
+          delete newErrors.header;
+          return newErrors;
+        });
+      }
+    }
+
+        // Validate description length
+        if (name === "description") {
+          if (value.length < 50) {
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              description: "Description must be at least 50 characters long.",
+            }));
+          } else {
+            setErrors((prevErrors) => {
+              const newErrors = { ...prevErrors };
+              delete newErrors.description;
+              return newErrors;
+            });
+          }
+        }
+    
+
     // Validate the date input
     if (name === "year") {
       const selectedDate = new Date(value);
@@ -36,6 +85,8 @@ function HomePage() {
         });
       }
     }
+
+    
 
     setFormData((prevData) => ({
       ...prevData,
@@ -118,24 +169,27 @@ function HomePage() {
               maxWidth: "500px",
             }}
           >
-            <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
-              Title:
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleInputChange}
-                style={{
-                  marginTop: "5px",
-                  width: "100%",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                  boxSizing: "border-box",
-                }}
-                required
-              />
-            </label>
+<label style={{ marginBottom: "10px", fontWeight: "bold" }}>
+  Title:
+  <input
+    type="text"
+    name="title"
+    value={formData.title}
+    onChange={handleInputChange}
+    style={{
+      marginTop: "5px",
+      width: "100%",
+      padding: "10px",
+      borderRadius: "5px",
+      border: "1px solid #ddd",
+      boxSizing: "border-box",
+    }}
+    required
+  />
+  {errors.title && (
+    <span style={{ color: "red", fontSize: "0.9rem" }}>{errors.title}</span>
+  )}
+</label>
 
             <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
               Header:
@@ -153,7 +207,11 @@ function HomePage() {
                   boxSizing: "border-box",
                 }}
                 required
-              />
+                />
+                {errors.header && (
+                  <span style={{ color: "red", fontSize: "0.9rem" }}>{errors.header}</span>
+                )}
+            
             </label>
 
             <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
@@ -197,6 +255,10 @@ function HomePage() {
                 rows="5"
                 required
               />
+
+{errors.description && (
+    <span style={{ color: "red", fontSize: "0.9rem" }}>{errors.description}</span>
+  )}
             </label>
 
             <label style={{ marginBottom: "20px", fontWeight: "bold" }}>
