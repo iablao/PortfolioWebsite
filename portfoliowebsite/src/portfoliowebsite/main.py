@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from portfoliowebsite.core.database import Base, engine
+from portfoliowebsite.core.database import BaseModel, engine
 from portfoliowebsite.routers import auth_router, portfolio_router
 from fastapi.middleware.cors import CORSMiddleware
 import logging
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Create all database tables
-Base.metadata.create_all(bind=engine)
+BaseModel.metadata.create_all(bind=engine)
 
 # Initialize the FastAPI app
 app = FastAPI()
@@ -50,8 +50,7 @@ async def shutdown_event():
 db: list[User] = [
     User(
         id = 1, 
-        name = "Jamila", 
-        email = "jamila.ahmed@gmail.com",
+        name = "Fred", 
         hashed_password = "0123hello",
     )
 ]
@@ -59,3 +58,9 @@ db: list[User] = [
 @app.get("/users")
 async def fetch_users():
     return db;
+
+# endpoint to create new user
+@app.post("/users")
+async def register_user(user: User):
+    db.append(user)
+    return {"id": user.id}

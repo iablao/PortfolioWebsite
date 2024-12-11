@@ -38,11 +38,6 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     return access_token
 """
 
-@router.get("/loginv2")
-def check(value: bool):
-
-    return {"result": value}
-
 
 @router.post("/login", response_model=token)
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
