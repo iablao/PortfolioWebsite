@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 function HomePage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true); // State for sidebar visibility
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     header: "",
@@ -10,6 +10,7 @@ function HomePage() {
     description: "",
     file: null,
   });
+  const [errors, setErrors] = useState({});
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -17,6 +18,25 @@ function HomePage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Validate the date input
+    if (name === "year") {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+      if (selectedDate >= currentDate) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          year: "Date must be before today.",
+        }));
+      } else {
+        setErrors((prevErrors) => {
+          const newErrors = { ...prevErrors };
+          delete newErrors.year;
+          return newErrors;
+        });
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -32,6 +52,18 @@ function HomePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check for any validation errors
+    const selectedDate = new Date(formData.year);
+    const currentDate = new Date();
+    if (selectedDate >= currentDate) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        year: "Date must be before today.",
+      }));
+      return; // Stop form submission
+    }
+
     console.log("Form Submitted:", formData);
     // Handle form submission logic here
     // For example, send formData to a server or API
@@ -128,6 +160,9 @@ function HomePage() {
               Year:
               <input
                 type="date"
+                name="year"
+                value={formData.year}
+                onChange={handleInputChange}
                 style={{
                   marginTop: "5px",
                   width: "100%",
@@ -138,7 +173,11 @@ function HomePage() {
                 }}
                 required
               />
+              {errors.year && (
+                <span style={{ color: "red", fontSize: "0.9rem" }}>{errors.year}</span>
+              )}
             </label>
+
 
             <label style={{ marginBottom: "10px", fontWeight: "bold" }}>
               Description:
