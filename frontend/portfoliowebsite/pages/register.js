@@ -1,11 +1,53 @@
 import { useState } from "react";
+import axios from "../utils/axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-function HomePage() {
+function RegistrationPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true); // State for sidebar visibility
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
+  const router = useRouter();
+
+  const validateInput = () => {
+    const newErrors = {};
+
+    if (username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters long.";
+    }
+
+    const passwordRegex = /^(?=.*[!@#$%^&*])/; // Must contain at least one special character
+    if (password.length < 3) {
+      newErrors.password = "Password must be at least 3 characters long.";
+    } else if (!passwordRegex.test(password)) {
+      newErrors.password = "Password must contain at least one special character.";
+    }
+
+    if (password !== confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Returns true if no errors
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateInput()) return;
+
+    // Simulated registration logic
+    console.log("Registration successful:", { username, password });
+    setMessage("Registration successful!");
+    setTimeout(() => router.push("/login"), 2000); // Redirect to /home after 2 seconds
   };
 
   return (
@@ -17,18 +59,20 @@ function HomePage() {
         fontFamily: "Arial, sans-serif",
         margin: 0,
         padding: 0,
-        background: "linear-gradient(to bottom, #ffffff, #fffff8)", // White to soft blue-grey
+        backgroundColor: "#f9f9f9",
         color: "#333",
       }}
     >
-      {/* Main Content with Sidebar */}
+      <header>
+        {/* Optional header content */}
+      </header>
+
       <div
-        style={{
-          display: "flex",
-          flex: 1,
+    style={{
+        display: "flex",
+        flex: 1,
         }}
       >
-        {/* Main Content */}
         <div
           style={{
             flex: 1,
@@ -39,65 +83,70 @@ function HomePage() {
             alignItems: "center",
           }}
         >
-          {/* Card for Welcome Title */}
-          <div
-            style={{
-              backgroundColor: "#4caf50",
-              padding: "30px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              textAlign: "center",
-              marginBottom: "20px",
-              width: "100%",
-              background: "linear-gradient(to right, #4caf50, #388e3c)", // Gradient from green to dark green
-              maxWidth: "600px",
-            }}
-          >
-            <h1 style={{ fontSize: "2.5rem", color: "white", marginBottom: "20px" }}>
-              Welcome to MyPortfolio™!
-            </h1>
-          </div>
+          <h1 style={{ fontSize: "2.5rem", color: "#4caf50", marginBottom: "20px" }}>
+            Register
+          </h1>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ marginBottom: "15px" }}>
+              <label>Username:</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+              />
+              {errors.username && (
+                <p style={{ color: "red", fontSize: "0.9rem" }}>{errors.username}</p>
+              )}
+            </div>
 
-          {/* Line Spacer */}
-          <div
-            style={{
-              width: "66%",
-              height: "3px",
-              backgroundColor: "#4caf50",
-              margin: "20px 0",
-            }}
-          ></div>
+            <div style={{ marginBottom: "15px" }}>
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+              />
+              {errors.password && (
+                <p style={{ color: "red", fontSize: "0.9rem" }}>{errors.password}</p>
+              )}
+            </div>
 
-          <p style={{ fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center", marginBottom: "20px" }}>
-            Please use the login button on the sidebar to access your portfolio.
-          </p>
+            <div style={{ marginBottom: "15px" }}>
+              <label>Confirm Password:</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+              />
+              {errors.confirmPassword && (
+                <p style={{ color: "red", fontSize: "0.9rem" }}>{errors.confirmPassword}</p>
+              )}
+            </div>
 
-          <Image
-            src="/myportfoliologo.png"
-            alt="A picture of me"
-            width={300}
-            height={300}
-            style={{
-              borderRadius: "50%",
-              marginTop: "20px",
-              marginBottom: "20px",
-              border: "4px solid #4caf50",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          />
-          
-          {/* Line Spacer */}
-          <div
-            style={{
-              width: "66%",
-              height: "3px",
-              backgroundColor: "#4caf50",
-              margin: "20px 0",
-            }}
-          ></div>
+            <button
+              type="submit"
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#4caf50",
+                color: "white",
+                border: "none",
+                cursor: "pointer",
+                borderRadius: "5px",
+              }}
+            >
+              Register
+            </button>
+          </form>
+          {message && <p style={{ marginTop: "15px", color: "green" }}>{message}</p>}
         </div>
 
-        {/* Sidebar */}
+{/* Sidebar */}
         <nav
           style={{
             width: sidebarOpen ? "220px" : "33px", // Toggle width based on sidebarOpen
@@ -309,4 +358,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default RegistrationPage;
