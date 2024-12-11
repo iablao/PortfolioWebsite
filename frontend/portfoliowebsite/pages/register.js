@@ -273,6 +273,32 @@ function RegistrationPage() {
                 </a>
 
                 <a
+                  href="http://localhost:3000/register"
+                  style={{
+                    backgroundColor: "#388e3c",
+                    color: "white",
+                    textDecoration: "none",
+                    marginBottom: "15px",
+                    padding: "15px",
+                    borderRadius: "10px",
+                    fontSize: "1.1rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    transition: "background-color 0.3s ease, transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#2c6b2f";
+                    e.target.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#388e3c";
+                    e.target.style.transform = "scale(1)";
+                  }}
+                >
+                  Register
+                </a>
+
+                <a
                   href="http://localhost:3000/aboutwebsite"
                   style={{
                     backgroundColor: "#388e3c",
