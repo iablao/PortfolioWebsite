@@ -66,7 +66,7 @@ function HomePage() {
     
       // Hardcoded credentials for temporary solution
       const correctUsername = "fred";
-      const correctPassword = "123";
+      const correctPassword = "123!";
     
       // Check if the provided username and password match the hardcoded ones
       if (username === correctUsername && password === correctPassword) {
